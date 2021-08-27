@@ -1,5 +1,4 @@
 # TO DO LIST
-![TODO LIST App Complete Task](./ImagesReadme/CompleteTask.png)
 
 Simple TODO list using:
 
