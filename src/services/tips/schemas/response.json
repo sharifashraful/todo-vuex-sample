@@ -1,0 +1,30 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "default": "Coins"
+    },
+    "data": {
+      "type": "array",
+      "description": "list of Coin",
+      "items": {
+        "type": "object",
+        "description": "Single Coin",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Coin Id"
+          },
+          "name": {
+            "type": "string",
+            "description": "Coin Name"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "id", "data"
+  ]
+}

@@ -1,0 +1,226 @@
+let result = Promise.resolve();
+result = result.then(() => getKeys.apply(null, []));
+result = result.then(() => delKeys.apply(null, []));
+for(let i in redisItem) {
+	// console.log(i)
+	result = result.then(() => insertgroceryItem.apply(null, [i, redisItem[i]]));
+}
+result
+  .then(() => {
+	  console.log('Promises were executed sequentially')		
+  })
+  .catch(err => console.log(err));			
+  
+  const jwt = require("jsonwebtoken");
+var aesjs = require('aes-js');
+const key = [ 11, 11, 11, 11, 11,11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 ];
+
+const Crypto = {
+
+	decodeToken: function( data ) {
+		try {
+			const decodedToken = jwt.verify( data, "aa aa aa aa aa aa aa aa aa aa aa aa" );
+			return decodedToken;
+		} catch( err ) {
+			return err;
+		}
+	},
+
+	encodeToken: function(data) {
+		try {
+			let token = jwt.sign( 
+				data, 
+				"aa aa aa aa aa aa aa aa aa aa aa aa"
+			);
+			return token;
+		} catch( err ) {
+			return err;
+		}
+	},
+
+	decryptData: function( data ) {
+		let encryptedBytes = aesjs.utils.hex.toBytes(data.d);
+		// The counter mode of operation maintains internal state, so to
+		// decrypt a new instance must be instantiated.
+		let aesCtr = new aesjs.ModeOfOperation.ctr(key, new aesjs.Counter(5));
+		let decryptedBytes = aesCtr.decrypt(encryptedBytes);
+
+		// Convert our bytes back into text
+		let decryptedText = aesjs.utils.utf8.fromBytes(decryptedBytes);
+		return decryptedText;
+	},
+
+	encryptData: function( data ) {
+
+		// Convert text to bytes
+		var text = JSON.stringify(data);
+		var textBytes = aesjs.utils.utf8.toBytes(text);
+		// The counter is optional, and if omitted will begin at 1
+		var aesCtr = new aesjs.ModeOfOperation.ctr( key, new aesjs.Counter(5) );
+		var encryptedBytes = aesCtr.encrypt(textBytes);
+		// To print or store the binary data, you may convert it to hex
+		var encryptedHex = aesjs.utils.hex.fromBytes(encryptedBytes);
+		return encryptedHex;
+
+	}
+
+}
+
+module.exports = Crypto;
+'use strict';
+
+// plain JSON 
+const config = {
+    dbs: {
+        app : {
+            alias : 'aaa', // whether alias is missing property name used as an db alias....
+            authentication: 'none',
+            host:   '127.0.0.1',
+            port:   '27017',
+            db:     'aa',
+            user: '',
+            password: ''
+        }
+    }
+};
+
+module.exports = module.exports.default = config;
+
+class UserModel extends classes(ProductDao, PatientDao) {
+
+
+roduct.aggregate(
+[{
+	$match: {
+	  _id: {
+		$in: temp
+	  }
+	}
+  },
+  {
+	$lookup: {
+	  from: "organizations",
+	  localField: "organization_id",
+	  foreignField: "_id",
+	  as: "organization"
+	},
+
+
+
+  }, {
+	$project: {
+	  _id: 1,
+	  name: 1,
+	  price: 1,
+	  cusprice: 1,
+	  description: 1,
+	  degree: 1,
+	  specialities: 1,
+	  visitingHour: 1,
+	  practiceDays: 1,
+	  "organization.name": 1
+	}
+  }
+], (error, orgs) => {
+
+Deliverman.aggregate([        
+  {
+	$match: {               
+	  tag:'darbazar'
+	}
+ },
+ {
+	$lookup:
+	  {
+		from: "users",
+		localField: "userId",
+		foreignField: "_id",
+		as: "users"
+	  }
+}
+],
+
+.aggregate([ 
+  // for remove paid + unapprove
+
+  { $match : { approved : "Y" }} ,
+  { $sort : { created : 1 } },
+  {
+	$group: {             
+	  _id: '$owner_id',
+	  balance: {$last: "$balance"}              
+	},            
+  },
+  {
+	$lookup: {
+	  from: "users",
+	  localField: "_id",
+	  foreignField: "_id",
+	  as: "users",
+	}
+  },
+  {
+	$project: {
+	  _id: 1,
+	  balance: 1,
+	  users:  "$users.full_name",
+	},
+  },
+
+], (err, result) => {
+
+aggregate([ 
+          { $match : { owner_Name : { $exists: true } }} ,
+          {
+            $group: {
+               "_id": {
+                ownerName: '$owner_Name',
+                ownerid: '$owner_id' 
+              }
+            }
+          },
+
+        ], (err, result) => {
+aggregate(
+        [{
+          $match: {
+            user_id: mongoose.Types.ObjectId(uid),
+            status: {
+              $nin: ["completed", "canceled"]
+            }
+          }
+        },
+        {
+          $lookup: {
+            from: "users",
+            localField: "deliverman_id",
+            foreignField: "_id",
+            as: "delivermaninfo",
+          },
+        },
+        {
+          $project: {
+		  
+
+          $project: {
+            _id: 1,
+            created: 1,
+            users: 1,
+          },
+        },
+        {
+          $sort: { created: -1 },
+        },
+      ],
+Promise.resolve( ).then( function onThen( ) {
+return
+
+}).then( function onThen( res ) {
+
+GET /tickets - Retrieves a list of tickets
+GET /tickets/12 - Retrieves a specific ticket
+POST /tickets - Creates a new ticket
+PUT /tickets/12 - Updates ticket #12
+PATCH /tickets/12 - Partially updates ticket #12
+DELETE /tickets/12 - Deletes ticket #12
+https://www.npmjs.com/package/jsonschema
